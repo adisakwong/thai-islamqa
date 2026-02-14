@@ -112,7 +112,19 @@ async function startTranslation() {
 
         // If Proxy is enabled
         if (CONFIG.USE_PROXY) {
-            fetchUrl = `https://corsproxy.io/?${encodeURIComponent(gasUrl)}`;
+            // Check if running on localhost or file protocol
+            const isLocal = window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1' ||
+                window.location.protocol === 'file:';
+
+            if (isLocal) {
+                // Use public proxy for local development
+                fetchUrl = `https://corsproxy.io/?${encodeURIComponent(gasUrl)}`;
+            } else {
+                // Use own API proxy for Vercel/Production
+                // Note: The endpoint parameter is the target URL (our GAS script)
+                fetchUrl = `/api/proxy?endpoint=${encodeURIComponent(gasUrl)}`;
+            }
         }
 
         console.log("Fetching:", fetchUrl);

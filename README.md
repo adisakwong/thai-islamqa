@@ -73,7 +73,22 @@ const CONFIG = {
 
 Simply open `Index.html` in your browser.
 
-*   *Note: If you run into CORS issues while running purely from a local file (`file://`), ensure `USE_PROXY: true` is set in `script.js`. This routes the request through a CORS proxy.*
+*   *Note: If you run into CORS issues while running purely from a local file (`file://`), ensure `USE_PROXY: true` is set in `script.js`.*
+
+## ☁️ Deployment (Vercel)
+
+This project is optimized for deployment on [Vercel](https://vercel.com).
+
+1.  **Push to GitHub**: Push this project to a GitHub repository.
+2.  **Import to Vercel**:
+    *   Go to Vercel Dashboard > "Add New..." > "Project".
+    *   Select your GitHub repository.
+    *   **Framework Preset**: Select "Other" or leave as default.
+    *   Click **Deploy**.
+3.  **That's it!**
+    *   The app includes an `api/proxy.js` function that acts as a secure proxy for the Google Apps Script backend, so no need to configure CORS manually.
+    *   The `script.js` automatically detects if it's running on Vercel and switches from `corsproxy.io` to your own private proxy.
+
 
 ## 📝 Usage
 
