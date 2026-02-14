@@ -14,10 +14,28 @@ const CONFIG = {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    const urlInput = document.getElementById('urlInput');
+    const clearBtn = document.getElementById('clearBtn');
+
     // Allow pressing Enter in URL input
-    document.getElementById('urlInput').addEventListener('keypress', (e) => {
+    urlInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') startTranslation();
     });
+
+    // Toggle Clear Button visibility
+    urlInput.addEventListener('input', () => {
+        clearBtn.style.display = urlInput.value ? 'block' : 'none';
+    });
+
+    // Clear Input Action
+    clearBtn.addEventListener('click', () => {
+        urlInput.value = '';
+        clearBtn.style.display = 'none';
+        urlInput.focus();
+    });
+
+    // Initial check
+    clearBtn.style.display = urlInput.value ? 'block' : 'none';
 });
 
 async function startTranslation() {
