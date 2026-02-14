@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function startTranslation() {
     const urlInput = document.getElementById('urlInput');
-    const targetUrl = urlInput.value.trim();
+    let targetUrl = urlInput.value.trim();
 
     const loader = document.getElementById('loader');
     const resultSection = document.getElementById('resultSection');
@@ -57,12 +57,42 @@ async function startTranslation() {
     }
 
     if (!targetUrl) {
-        showError('Please enter an IslamQA URL.');
+        Swal.fire({
+            icon: 'warning',
+            title: 'No URL Found',
+            text: 'Please enter an IslamQA URL.',
+            confirmButtonColor: '#3b82f6'
+        });
         return;
     }
 
-    if (!targetUrl.includes('islamqa.info')) {
-        showError('URL must be from islamqa.info');
+    // Check Format & Auto-correct
+    // Regex for: https://islamqa.info/<lang>/answers/<id>(/anything-else)
+    const urlPattern = /^https?:\/\/islamqa\.info\/([a-z]{2,3})\/answers\/(\d+)/i;
+    const match = targetUrl.match(urlPattern);
+
+    if (match) {
+        // match[1] = lang (e.g. en), match[2] = id (e.g. 192341)
+        const lang = match[1];
+        const id = match[2];
+        const correctUrl = `https://islamqa.info/${lang}/answers/${id}`;
+
+        // If the current URL is different (e.g. has extra slashes or query params), update it
+        if (targetUrl !== correctUrl) {
+            targetUrl = correctUrl;
+            urlInput.value = correctUrl; // Auto-update input
+
+            // Optional: Show a small toast or just proceed silently? 
+            // The user asked to "adjust automatically", implying proceed.
+        }
+    } else {
+        // Invalid Format
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid URL Format',
+            html: 'Please use the correct format:<br><b>https://islamqa.info/en/answers/12345</b>',
+            confirmButtonColor: '#ef4444'
+        });
         return;
     }
 

@@ -5,12 +5,18 @@
 ## 🌟 Key Features
 
 *   **Smart Scraping**: Automatically extracts the core "Question", "Summary of Answer", and "Detailed Answer" from IslamQA pages.
+*   **Smart URL Handling**: 
+    *   **Auto-Correction**: Automatically detects and formats long URLs (e.g., `.../answers/123/title`) to the canonical format (`.../answers/123`).
+    *   **Validation**: Ensures only valid `islamqa.info` URLs are processed using Regex.
 *   **Auto Translation**: Uses Google Apps Script's `LanguageApp` to translate content to Thai seamlessly.
 *   **Clean Reading Experience**:
     *   Removes HTML clutter, ads, and unrelated links.
     *   Formats text for readability.
     *   **New**: Improved footer and reference detection to keep the answer section clean.
-*   **Modern UI**: Beautiful "Glassmorphism" design with responsive layout, suitable for both desktop and mobile.
+*   **Modern UI & UX**: 
+    *   **Glassmorphism Design**: Beautiful, responsive layout suitable for both desktop and mobile.
+    *   **SweetAlert2**: Integrated for beautiful, responsive popup notifications (Success, Error, Warning).
+    *   **Clear Button**: Easily clear the input field with a single click.
 *   **Quick Copy**: One-click button to copy translated sections (Question, Summary, Answer) to clipboard.
 
 ## 🛠 Tech Stack
