@@ -1,6 +1,6 @@
-# IslamQA Thai Translator (Local)
+# Thai-IslamQA
 
-**IslamQA Thai Translator** is a web-based tool designed to help Thai speakers access Islamic knowledge from [IslamQA.info](https://islamqa.info). This application allows users to input an English (or other language) IslamQA URL, scrapes the content (Question, Summary, Answer), and automatically translates it into Thai using the Google Translate API.
+**Thai-IslamQA** (แปลภาษาไทยคำถามคำตอบอัตโนมัติ) is a web-based tool designed to help Thai speakers access Islamic knowledge from [IslamQA.info](https://islamqa.info). This application allows users to input an English (or other language) IslamQA URL, scrapes the content (Question, Summary, Answer), and automatically translates it into Thai using the Google Translate API.
 
 ## 🌟 Key Features
 
@@ -12,9 +12,9 @@
 *   **Clean Reading Experience**:
     *   Removes HTML clutter, ads, and unrelated links.
     *   Formats text for readability.
-    *   **New**: Improved footer and reference detection to keep the answer section clean.
 *   **Modern UI & UX**: 
     *   **Glassmorphism Design**: Beautiful, responsive layout suitable for both desktop and mobile.
+    *   **Interactive Title**: The "IslamQA" title button provides quick access to the official website.
     *   **SweetAlert2**: Integrated for beautiful, responsive popup notifications (Success, Error, Warning).
     *   **Clear Button**: Easily clear the input field with a single click.
 *   **Quick Copy**: One-click button to copy translated sections (Question, Summary, Answer) to clipboard.
@@ -22,7 +22,8 @@
 ## 🛠 Tech Stack
 
 *   **Frontend**:
-    *   HTML5 & CSS3 (Custom Glassmorphism + Bootstrap 5)
+    *   HTML5
+    *   CSS3 (External `style.css` with Custom Glassmorphism + Bootstrap 5)
     *   Vanilla JavaScript (Fetch API)
 *   **Backend**:
     *   **Google Apps Script (GAS)**: Acts as a serverless backend and proxy to handle CORS, scraping, and translation.
